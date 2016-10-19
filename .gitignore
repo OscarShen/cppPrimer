@@ -1,0 +1,8 @@
+*.db
+*.sln
+*.vcxproj
+*.filters
+Debug/
+.vs/
+*.opendb
+cppPrimer/
