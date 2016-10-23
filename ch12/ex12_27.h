@@ -1,3 +1,6 @@
+#ifndef EX12_27_H_
+#define EX12_27_H_
+
 #include <fstream>
 #include <iostream>
 #include <string>;
@@ -6,29 +9,32 @@
 #include <map>
 #include <set>
 #include <sstream>
-using namespace std;
 
 class TextQuery;
 class QueryResult;
 
 class TextQuery {
 public:
-	using line_no = vector<string>::size_type;
-	TextQuery(ifstream&);
-	QueryResult query(const string&) const;
+	using line_no = std::vector<std::string>::size_type;
+	TextQuery(std::ifstream&);
+	QueryResult query(const std::string&) const;
 private:
-	shared_ptr<vector<string>> file;
-	map < string, shared_ptr<set<line_no>>> wm;
+	std::shared_ptr<std::vector<std::string>> file;
+	std::map < std::string, std::shared_ptr<std::set<line_no>>> wm;
 };
 
 class QueryResult {
-	friend ostream& print(ostream&, const QueryResult&);
+	friend std::ostream& print(std::ostream&, const QueryResult&);
 public:
-	using line_no = vector<string>::size_type;
-	QueryResult(string s, shared_ptr<set<line_no>> p, shared_ptr<vector<string>> f)
+	using line_no = std::vector<std::string>::size_type;
+	QueryResult(std::string s, std::shared_ptr<std::set<line_no>> p, std::shared_ptr<std::vector<std::string>> f)
 		:sought(s), lines(p), file(f) {}
+	std::set<QueryResult::line_no>::const_iterator begin() const;
+	std::set<QueryResult::line_no>::const_iterator end() const;
+	std::shared_ptr<std::vector<std::string>> get_file();
 private:
-	string sought;
-	shared_ptr<set<line_no>> lines;
-	shared_ptr<vector<string>> file;
+	std::string sought;
+	std::shared_ptr<std::set<line_no>> lines;
+	std::shared_ptr<std::vector<std::string>> file;
 };
+#endif // !EX12_27_H_

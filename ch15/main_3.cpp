@@ -6,6 +6,7 @@
 double print_total(std::ostream& os, const Quote& item, size_t n);
 
 int main() {
+	decltype(print_total);
 }
 
 double print_total(std::ostream & os, const Quote & item, size_t n)
